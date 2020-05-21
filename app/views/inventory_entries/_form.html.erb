@@ -44,14 +44,6 @@
         </div>
       </div>
       <div class="row top-buffer-20">
-        <div class="col-md-3">
-          <%= f.label :Źródło %>
-          <div>
-            <%= collection_select(:inventory_entry, :inventory_source_id, InventorySource.where(:is_active => true), :id, :name, prompt: true) %>
-          </div>
-        </div>
-      </div>
-      <div class="row top-buffer-20">
         <div class="col-md-4">
           <%= f.label :numer_inwentarzowy %>
         </div>
@@ -59,6 +51,13 @@
       <div class="row">
         <div class="col-md-3">
           <%= f.text_field :stock_number, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row top-buffer-20">
+        <div class="col-md-4">
+          <%= f.label :Źródło %>
+<!--          todo zmienić cień dropdawnu po jego aktywacji, teraz przyjmuje cały czas domyślne zaznaczenie z collection select -->
+          <%= collection_select(:inventory_entry, :inventory_source_id, InventorySource.where(:is_active => true), :id, :name, {prompt: true}, {:class=> "dropdown"})%>
         </div>
       </div>
       <div class="row top-buffer-20">
