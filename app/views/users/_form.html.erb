@@ -4,58 +4,65 @@
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-	<p>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email, 'disabled' => !@user.id.nil? %>
-  </div>
-  </p>
 
-	<p>
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  </p>
+  <div class="row">
+    <div class="row col-md-12">
+      <div class="well col-md-4">
+        <p>
+        <div class="field col-md-12">
+          <%= f.label :email, class: "col-md-2 text-right" %>
+          <%= f.text_field :email, class: "form-control", 'disabled' => !@user.id.nil? %>
+        </div>
+        </p>
 
-	<p>
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  </p>
+        <p>
+        <div class="field col-md-12">
+          <%= f.label :first_name, class: "col-md-2 text-right" %>
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+        </p>
 
-	<p>
-  <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </div>
-  </p>
+        <p>
+        <div class="field col-md-12">
+          <%= f.label :last_name, class: "col-md-2 text-right" %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+        </p>
 
-  <% if can? :set_superadmin, @user %>
-    <p>
-    <div class="field">
-      <%= f.label :is_superadmin %>
-      <%= f.check_box :is_superadmin %>
+        <p>
+        <div class="field col-md-12">
+          <%= f.label :phone, class: "col-md-2 text-right" %>
+          <%= f.text_field :phone, class: "form-control" %>
+        </div>
+        </p>
+
+        <div>
+          <% if can? :set_superadmin, @user %>
+            <p>
+            <div class="field col-md-12 top-buffer-20">
+              <%= f.label :is_superadmin, class: "col-md-6 text-left" %>
+              <%= f.check_box :is_superadmin %>
+            </div>
+            </p>
+          <% end %>
+
+          <p>
+          <div class="field col-md-12">
+            <%= f.label :is_blocked, class: "col-md-6 text-left" %>
+            <%= f.check_box :is_blocked %>
+          </div>
+          </p>
+
+          <%= f.submit :Zapisz, class: "btn btn-sm btn-success top-buffer-20" %>
+        </div>
+      </div>
     </div>
-    </p>
-  <% end %>
-
-	<p>
-  <div class="field">
-    <%= f.label :is_blocked %>
-    <%= f.check_box :is_blocked %>
-  </div>
-	</p>
-
-  <div class="actions">
-    <%= f.submit :Zapisz %>
   </div>
 <% end %>
