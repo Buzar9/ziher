@@ -1,25 +1,36 @@
 <h1>Źródła książki inwentarzowej</h1>
+<div class="row">
+  <div class="col-md-12">
+    <table class="col-md-5">
+      <tr>
+        <th class="col-md-4">Nazwa</th>
+        <th class="col-md-3">Aktywne</th>
+        <th class="col-md-1"></th>
+        <th class="col-md-1"></th>
+        <th class="col-md-1"></th>
+      </tr>
 
-<table>
-  <tr>
-    <th>Nazwa</th>
-    <th>Aktywne</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <% @inventory_sources.each do |inventory_source| %>
+        <tr>
+          <td class="col-md-4"><%= inventory_source.name %> </td>
+          <td class="col-md-3"><%= inventory_source.is_active %></td>
+          <td>
+            <%= button_to 'Pokaż', inventory_source, :class => "btn btn-sm btn-success" %>
+          </td>
+          <td>
+            <%= button_to 'Edytuj', edit_inventory_source_path(inventory_source), :class => "btn btn-sm btn-primary" %>
+          </td>
+          <td>
+            <%= button_to 'Usuń', inventory_source, :class => "btn btn-sm btn-danger ", method: :delete, data: {confirm: 'Czy na pewno?'} %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
-<% @inventory_sources.each do |inventory_source| %>
-  <tr>
-    <td><%= inventory_source.name %></td>
-    <td><%= inventory_source.is_active %></td>
-    <td><%= link_to 'Pokaż', inventory_source %></td>
-    <td><%= link_to 'Edytuj', edit_inventory_source_path(inventory_source) %></td>
-    <td><%= link_to 'Usuń', inventory_source, method: :delete, data: { confirm: 'Czy na pewno?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'Nowe źródło', new_inventory_source_path %>
+<div class="row top-buffer-20">
+  <div class="col-md-12">
+    <%= button_to 'Nowe źródło', new_inventory_source_path, :class => "btn btn-md" %>
+  </div>
+</div>
